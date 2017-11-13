@@ -1,0 +1,26 @@
+{
+  "name": "sample-veritone-app",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "react": "^16.1.1",
+    "react-dom": "^16.1.1",
+    "react-scripts": "1.0.17",
+    "universal-cookie": "^2.1.0",
+    "veritone-react-common": "^1.0.1"
+  },
+  "scripts": {
+    "start": "HOST=local.veritone-sample-app.com react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "compression": "^1.7.1",
+    "cookie-parser": "^1.4.3",
+    "dotenv": "^4.0.0",
+    "express": "^4.16.2",
+    "passport": "^0.4.0",
+    "passport-veritone": "^1.0.0"
+  }
+}
