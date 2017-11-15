@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { AppBar, FilePicker } from 'veritone-react-common';
+import api from './api';
 
 const apiUrl = "http://localhost:3001";
 
@@ -11,9 +12,6 @@ class App extends Component {
       authError: false,
       filePickerOpen: false
     };
-  }
-
-  componentWillMount() {
   }
 
   handleAuthorize() {
@@ -39,7 +37,8 @@ class App extends Component {
                         onClick={this.handleOpenFilePicker.bind(this)}>
                   Open File Picker
               </button>
-              <FilePicker isOpen={this.state.filePickerOpen}/>
+              <FilePicker isOpen={this.state.filePickerOpen}
+                          onUploadFiles={this.handleOnUpload}/>
             </div> 
         </div>
       </div>

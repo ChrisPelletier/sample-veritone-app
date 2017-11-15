@@ -7,6 +7,7 @@
     "react-dom": "^16.1.1",
     "react-scripts": "1.0.17",
     "universal-cookie": "^2.1.0",
+    "veritone-client-js": "^1.0.4",
     "veritone-react-common": "^1.0.1"
   },
   "scripts": {
