@@ -27,6 +27,12 @@ class App extends Component {
   }
 
   render(){
+    const filePickerOptions = {
+      width: 800,
+      height: 400,
+      accept: ['.jpeg','.jpg','.png','.gif']
+    };
+
     return (
       <div>
         <AppBar />
@@ -38,7 +44,8 @@ class App extends Component {
                   Open File Picker
               </button>
               <FilePicker isOpen={this.state.filePickerOpen}
-                          onUploadFiles={this.handleOnUpload}/>
+                          onUploadFiles={this.handleOnUpload}
+                          options={filePickerOptions}/>
             </div> 
         </div>
       </div>
