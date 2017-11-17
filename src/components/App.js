@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { AppBar, FilePicker } from 'veritone-react-common';
-import api from './api';
+import api from '../api/api';
 
 const apiUrl = "http://localhost:3001";
 

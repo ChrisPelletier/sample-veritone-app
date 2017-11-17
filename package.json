@@ -5,7 +5,11 @@
   "dependencies": {
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
+    "react-redux": "^5.0.6",
     "react-scripts": "1.0.17",
+    "redux": "^3.7.2",
+    "redux-devtools": "^3.4.1",
+    "redux-thunk": "^2.2.0",
     "universal-cookie": "^2.1.0",
     "veritone-client-js": "^1.0.4",
     "veritone-react-common": "^1.0.1"

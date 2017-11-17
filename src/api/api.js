@@ -1,4 +1,4 @@
-import './polyfill';
+import '../polyfill';
 import VeritoneApi from 'veritone-client-js/dist/bundle-browser';
 
 import Cookies from 'universal-cookie';
