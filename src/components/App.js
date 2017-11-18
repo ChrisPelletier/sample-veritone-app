@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux'
 import { AppBar, FilePicker } from 'veritone-react-common';
-import api from '../api/api';
+import { getSignedWriteableUrl } from '../actions/index';
 
 const apiUrl = "http://localhost:3001";
 
@@ -12,6 +13,11 @@ class App extends Component {
       authError: false,
       filePickerOpen: false
     };
+  }
+
+  componentWillMount() {
+    const { dispatch } = this.props;
+    dispatch(getSignedWriteableUrl());
   }
 
   handleAuthorize() {
@@ -28,8 +34,6 @@ class App extends Component {
 
   render(){
     const filePickerOptions = {
-      width: 800,
-      height: 400,
       accept: ['.jpeg','.jpg','.png','.gif']
     };
 
@@ -53,4 +57,17 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+  console.log(state);
+  return {
+    gettingSignedUrl: state.gettingSignedUrl
+  };
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    dispatch: dispatch
+  };
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(App);

@@ -4,6 +4,7 @@ const cookieParser = require('cookie-parser');
 const dotenv = require('dotenv');
 const passport = require('passport');
 const Strategy = require('passport-veritone');
+var httpProxy = require('http-proxy');
 
 
 // init env vars
@@ -14,7 +15,7 @@ dotenv.config({ path: '.env.development' });
 // settings
 // --------------------------------
 const settings = {
-  host: 'local.veritone-sample-app.com',
+  host: 'local.veritone.com',
   port: process.env.NODE_PORT || 9000,
   clientId: process.env.CLIENT_ID,
   clientSecret: process.env.CLIENT_SECRET,
@@ -45,8 +46,8 @@ app.use('/static', express.static('build/static'));
 // middleware
 // --------------------------------
 app.use(function (req, res, next) {
-  console.log(req.url);
-  console.log(req.headers);
+  console.log("request url", req.url);
+  console.log("request headers", req.headers);
   next();
 });
 
@@ -60,18 +61,25 @@ passport.use(new Strategy({
   return done(null, profile);
 }));
 
+var apiProxy = httpProxy.createProxyServer();
+
+app.all("/v3/graphql", function(req, res) {
+  apiProxy.web(req, res, {
+    target: "https://api.veritone.com"
+  });
+});
+
 app.get('/auth/veritone', passport.authenticate('veritone'));
 
 app.get('/auth/veritone/callback',
   passport.authenticate('veritone', { session: false }), (req, res) => {
     // fixme: in prod, this needs to send index.html, i think
-    console.log(req);
     res
       .cookie('oauthToken', req.user.oauthToken, {
         secure: false,
         httpOnly: false
       })
-      .redirect(302, 'http://local.veritone-sample-app.com:3000');
+      .redirect(302, 'http://local.veritone.com:3000');
   });
 
 
