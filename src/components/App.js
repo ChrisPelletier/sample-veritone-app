@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux'
 import { AppBar, FilePicker } from 'veritone-react-common';
-import { getSignedWriteableUrl } from '../actions/index';
+import { getSignedWriteableUrl, getUser } from '../actions/index';
 
 const apiUrl = "http://localhost:3001";
 
@@ -17,7 +17,7 @@ class App extends Component {
 
   componentWillMount() {
     const { dispatch } = this.props;
-    dispatch(getSignedWriteableUrl());
+    dispatch(getUser());
   }
 
   handleAuthorize() {
@@ -40,6 +40,7 @@ class App extends Component {
     return (
       <div>
         <AppBar />
+        
         <div style={{margin:100}}>
             <div>
               <button type="button" 
@@ -60,7 +61,8 @@ class App extends Component {
 const mapStateToProps = state => {
   console.log(state);
   return {
-    gettingSignedUrl: state.gettingSignedUrl
+    gettingSignedUrl: state.signedWriteableUrl.gettingSignedUrl,
+    user: state.user
   };
 }
 

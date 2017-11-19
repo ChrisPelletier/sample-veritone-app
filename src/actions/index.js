@@ -17,7 +17,7 @@ if (oauthToken) {
 export const getSignedWriteableUrlStart = () =>  {
     console.log("getSignedWriteableUrlStart action");
     return {
-        type: types.GET_SIGNED_WRITABLE_URL_START
+        type: types.GET_SIGNED_WRITABLE_URL
     }
 }
 
@@ -33,7 +33,7 @@ export const getSignedWriteableUrlFailure = () =>  {
     }
 }
 
-export const getSignedWriteableUrl =  () => (dispatch) =>  {
+export const getSignedWriteableUrl = () => (dispatch) =>  {
     console.log("getSignedWriteableUrl action called");
     dispatch(getSignedWriteableUrlStart())
     let query = `query {
@@ -42,4 +42,43 @@ export const getSignedWriteableUrl =  () => (dispatch) =>  {
         }
     }`;
     return client.graphql.query(query);
+}
+
+export const getUserStart = () => {
+    return {
+        type: types.GET_USER
+    }
+}
+
+export const getUserSuccess = (userData) => {
+    return {
+        type: types.GET_USER_SUCCESS,
+        name: userData.name,
+        id: userData.id,
+        ...userData.jsondata
+    }
+}
+
+export const getUserFailure = (error) => {
+    return {
+        type: types.GET_USER_FAILURE,
+        error: error
+    }
+}
+
+export const getUser = () => (dispatch) => {
+    let query = `query {
+        me {
+            name,
+            id,
+            jsondata
+        }
+    }`
+    dispatch(getUserStart());
+    return client.graphql.query(query)
+        .then(response => {
+            dispatch(getUserSuccess(response.data.me));
+        }, error => {
+            dispatch(getUserFailure(error))
+        });
 }
