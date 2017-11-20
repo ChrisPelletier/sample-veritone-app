@@ -38,6 +38,7 @@ class ButtonContainer extends Component {
     handleUploadFiles = (files) => {
         const { dispatch } = this.props;
         dispatch(filesPicked(files));
+        this.setState({filePickerOpen: false});
     }
 
     handleClose = (files) => {
@@ -48,9 +49,9 @@ class ButtonContainer extends Component {
         var newAccept = this.state.accept.slice();
         if (event.target.checked && !_.includes(this.state.accept, name)) {
             newAccept.push(name);
-        } else {
+        } else if (!event.target.checked && _.includes(this.state.accept, name)) {
             _.remove(newAccept, (n) => {
-                return n = name;
+                return n === name;
             })
         }
         this.setState({accept: newAccept});
