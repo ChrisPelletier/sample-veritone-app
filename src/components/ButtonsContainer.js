@@ -26,30 +26,36 @@ class ButtonContainer extends Component {
         };
     }
 
-    handleOpenFilePicker() {
+    handleOpenFilePicker = () => {
         this.setState({filePickerOpen: true});
+    }
+
+    handleUploadFiles = () => {
+
     }
 
     render() {
         const filePickerOptions = {
             accept: ['.jpeg','.jpg','.png','.gif']
         };
-        
+        const { makingRequest } = this.props;
         return (
             <Buttons>
                 <Button raised 
+                    disabled={makingRequest}
                     color="primary"
                     onClick={this.handleOpenFilePicker.bind(this)}>
                     Open File Picker
                 </Button>
                 <FilePicker isOpen={this.state.filePickerOpen}
-                    onUploadFiles={this.handleOnUpload}/>
+                    onUploadFiles={this.handleUploadFiles}/>
             </Buttons>
         );
     }
 }
 
 const mapStateToProps = state => {
+    console.log(state);
     return {
         makingRequest: state.user.gettingUser || state.signedWriteableUrl.gettingSignedUrl
     };

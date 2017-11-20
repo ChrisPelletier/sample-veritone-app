@@ -21,7 +21,6 @@ const settings = {
   clientSecret: process.env.CLIENT_SECRET,
   callbackURL: process.env.CALLBACK_URL
 };
-console.log(settings);
 
 // express app
 // --------------------------------
@@ -46,8 +45,6 @@ app.use('/static', express.static('build/static'));
 // middleware
 // --------------------------------
 app.use(function (req, res, next) {
-  console.log("request url", req.url);
-  console.log("request headers", req.headers);
   next();
 });
 
