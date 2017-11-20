@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
 import Button from 'material-ui/Button';
+import { FormGroup, FormControlLabel } from 'material-ui/Form';
+import Checkbox from 'material-ui/Checkbox';
 import { FilePicker } from 'veritone-react-common';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 import { filesPicked } from '../actions/filePickerActions';
 
 const Buttons = styled.div`
@@ -23,7 +26,8 @@ class ButtonContainer extends Component {
         super();
 
         this.state = {
-            filePickerOpen: false
+            filePickerOpen: false,
+            accept: []
         };
     }
 
@@ -36,13 +40,58 @@ class ButtonContainer extends Component {
         dispatch(filesPicked(files));
     }
 
+    handleClose = (files) => {
+        this.setState({filePickerOpen: false});
+    }
+
+    handleToggle = (name) => (event) => {
+        var newAccept = this.state.accept.slice();
+        if (event.target.checked && !_.includes(this.state.accept, name)) {
+            newAccept.push(name);
+        } else {
+            _.remove(newAccept, (n) => {
+                return n = name;
+            })
+        }
+        this.setState({accept: newAccept});
+    };
+
     render() {
         const filePickerOptions = {
-            accept: ['.jpeg','.jpg','.png','.gif']
+            accept: this.state.accept
         };
         const { makingRequest } = this.props;
         return (
             <Buttons>
+                <FormGroup row>
+                    <FormControlLabel
+                        control={
+                            <Checkbox
+                                onChange={this.handleToggle('.png')}
+                                value=".png"
+                            />
+                        }
+                        label=".png"
+                    />
+                    <FormControlLabel
+                        control={
+                            <Checkbox
+                                onChange={this.handleToggle('.jpeg')}
+                                value=".jpg"
+                            />  
+                        }
+                        label=".jpg"
+                    />
+                    <FormControlLabel
+                        control={
+                            <Checkbox
+                                onChange={this.handleToggle('.pdf')}
+                                value=".pdf"
+                            />
+                        }
+                        label=".pdf"
+                    />
+                </FormGroup>
                 <Button raised 
                     disabled={makingRequest}
                     color="primary"
@@ -50,7 +99,9 @@ class ButtonContainer extends Component {
                     Open File Picker
                 </Button>
                 <FilePicker isOpen={this.state.filePickerOpen}
-                    onUploadFiles={this.handleUploadFiles}/>
+                    onUploadFiles={this.handleUploadFiles}
+                    onCloseModal={this.handleClose}
+                    options={filePickerOptions}/>
             </Buttons>
         );
     }
