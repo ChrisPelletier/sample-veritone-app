@@ -6,6 +6,7 @@
     "axios": "^0.17.1",
     "express-request-proxy": "^2.0.0",
     "http-proxy": "^1.16.2",
+    "lodash": "^4.17.4",
     "material-ui": "next",
     "npm-run-all": "^4.1.2",
     "prop-types": "^15.6.0",
