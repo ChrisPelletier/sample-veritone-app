@@ -6,7 +6,7 @@ import styled from 'styled-components';
 
 const UserInfoContainer = styled.div`
     height: 100px;
-    border: 1px solid lightgrey;
+    border-bottom: 1px solid lightgrey;
     display: -webkit-flex;
     display: flex;
     -webkit-flex-direction: column;
