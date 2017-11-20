@@ -20,12 +20,22 @@ const FileTableTitle = styled.span`
     font-weight: 500;
 `;
 
+const SubNote = styled.span`
+    font-size: 12px;
+    margin-left: 30px;
+    color: lightgrey;
+`;
+
 class FileList extends Component {
     render() {
         const { files } = this.props.filePicker;
         return (
             <FileListContainer>
                 <FileTableTitle>File List</FileTableTitle>
+                <SubNote>
+                    * I couldn't test against the getSignedWriteableUrl query because of
+                    a bug so I am displaying a file list
+                </SubNote>
                 <Table>
                     <TableHead>
                         <TableRow>
