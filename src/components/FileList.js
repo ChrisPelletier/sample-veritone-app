@@ -40,11 +40,11 @@ class FileList extends Component {
                             files.map((n,i) => {
                                 return (
                                     <TableRow key={i}>
-                                        <TableCell>{n.name ? n.name : "N/A"}</TableCell>
-                                        <TableCell>{n.type ? n.type : "N/A"}</TableCell>
-                                        <TableCell>{n.size ? convertBytesToString(n.size) : "N/A"}</TableCell>
+                                        <TableCell>{n.name ? n.name : 'N/A'}</TableCell>
+                                        <TableCell>{n.type ? n.type : 'N/A'}</TableCell>
+                                        <TableCell>{n.size ? convertBytesToString(n.size) : 'N/A'}</TableCell>
                                         <TableCell>
-                                            {n.lastModified ? new Date(n.lastModified).toDateString() : "N/A"}
+                                            {n.lastModified ? new Date(n.lastModified).toDateString() : 'N/A'}
                                         </TableCell>
                                     </TableRow>
                                 );
@@ -53,7 +53,7 @@ class FileList extends Component {
                     </TableBody>
                 </Table>
             </FileListContainer>
-        )
+        );
     }
 }
 

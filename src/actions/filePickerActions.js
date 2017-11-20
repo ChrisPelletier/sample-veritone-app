@@ -4,5 +4,5 @@ export const filesPicked = (files) => {
     return {
         type: FILES_PICKED,
         files: files
-    }
+    };
 };
