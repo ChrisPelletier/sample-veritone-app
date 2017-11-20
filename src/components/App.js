@@ -6,6 +6,7 @@ import Paper from 'material-ui/Paper';
 import { getUser } from '../actions/userActions';
 import UserInfo from './UserInfo';
 import ButtonContainer from './ButtonsContainer';
+import FileList from './FileList';
 
 const apiUrl = 'http://localhost:3001';
 
@@ -36,6 +37,7 @@ class App extends Component {
                         <Grid item xs={12}>
                             <Paper>
                                 <UserInfo />
+                                <FileList />
                                 <ButtonContainer />
                             </Paper>
                         </Grid>
