@@ -27,10 +27,6 @@ class App extends Component {
         window.location = apiUrl + '/api/oauth/authorize';
     }
 
-    handleOnUpload(files) {
-        
-    }
-
     render(){
         return (
             <div>

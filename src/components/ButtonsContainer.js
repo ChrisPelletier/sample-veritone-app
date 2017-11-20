@@ -3,6 +3,7 @@ import Button from 'material-ui/Button';
 import { FilePicker } from 'veritone-react-common';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import { filesPicked } from '../actions/filePickerActions';
 
 const Buttons = styled.div`
     height: 100px;
@@ -30,8 +31,9 @@ class ButtonContainer extends Component {
         this.setState({filePickerOpen: true});
     }
 
-    handleUploadFiles = () => {
-
+    handleUploadFiles = (files) => {
+        const { dispatch } = this.props;
+        dispatch(filesPicked(files));
     }
 
     render() {
@@ -55,7 +57,6 @@ class ButtonContainer extends Component {
 }
 
 const mapStateToProps = state => {
-    console.log(state);
     return {
         makingRequest: state.user.gettingUser || state.signedWriteableUrl.gettingSignedUrl
     };

@@ -14,4 +14,6 @@ const filePicker = (state = initialState, action) => {
     default:
         return state;
     }
-}
+};
+
+export default filePicker;
