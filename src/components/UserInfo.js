@@ -34,7 +34,6 @@ class UserInfo extends Component {
     }
 
     render() {
-        console.log(this.props);
         const { firstName, lastName, id, name } = this.props.user;
         return (
             <UserInfoContainer>
@@ -43,7 +42,8 @@ class UserInfo extends Component {
                         <CircularProgress size={50} /> :
                         <div>
                             <UserName>{firstName} {lastName}</UserName>
-                            <UserEmail>{id}</UserEmail>
+                            <UserEmail>{name}</UserEmail>
+                            <div>{id}</div>
                         </div>
                 }
             </UserInfoContainer>
@@ -63,9 +63,8 @@ UserInfo.propTypes = {
 };
 
 const mapStateToProps = state => {
-    console.log(state);
     return {
-      user: state.user
+        user: state.user
     };
 };
   

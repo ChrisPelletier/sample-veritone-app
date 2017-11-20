@@ -17,8 +17,8 @@ if (oauthToken) {
 export const getUserStart = () => {
     return {
         type: types.GET_USER
-    }
-}
+    };
+};
 
 export const getUserSuccess = (userData) => {
     return {
@@ -26,15 +26,15 @@ export const getUserSuccess = (userData) => {
         name: userData.name,
         id: userData.id,
         ...userData.jsondata
-    }
-}
+    };
+};
 
 export const getUserFailure = (error) => {
     return {
         type: types.GET_USER_FAILURE,
         error: error
-    }
-}
+    };
+};
 
 export const getUser = () => (dispatch) => {
     let query = `query {
@@ -43,12 +43,12 @@ export const getUser = () => (dispatch) => {
             id,
             jsondata
         }
-    }`
+    }`;
     dispatch(getUserStart());
     return client.graphql.query(query)
         .then(response => {
             dispatch(getUserSuccess(response.data.me));
         }, error => {
-            dispatch(getUserFailure(error))
+            dispatch(getUserFailure(error));
         });
-}
+};

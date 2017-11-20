@@ -8,29 +8,28 @@ let initialState = {
 
 const user = (state = initialState, action) => {
     switch(action.type) {
-        case GET_USER:
-            console.log(action);
-            return {
-                gettingUser: true
-            };
-        case GET_USER_SUCCESS:
-            return {
-                ...state,
-                gettingUser: false,
-                name: action.name,
-                id: action.id,
-                firstName: action.firstName,
-                lastName: action.lastName,
-                accountProfile: action.accountProfile
-            };
-        case GET_USER_FAILURE:
-            return {
-                ...state,
-                gettingUser: false
-            };
-        default:
-            return state;
+    case GET_USER:
+        return {
+            gettingUser: true
+        };
+    case GET_USER_SUCCESS:
+        return {
+            ...state,
+            gettingUser: false,
+            name: action.name,
+            id: action.id,
+            firstName: action.firstName,
+            lastName: action.lastName,
+            accountProfile: action.accountProfile
+        };
+    case GET_USER_FAILURE:
+        return {
+            ...state,
+            gettingUser: false
+        };
+    default:
+        return state;
     }
-}
+};
 
 export default user;
