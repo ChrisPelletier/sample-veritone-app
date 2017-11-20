@@ -1,5 +1,3 @@
-import '../polyfill';
-import VeritoneApi from 'veritone-client-js/dist/bundle-browser';
 import * as types from '../constants/actionTypes';
 import { getCurrentUser } from '../api/api';
 
