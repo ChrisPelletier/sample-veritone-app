@@ -14,36 +14,6 @@ if (oauthToken) {
     });
 }
 
-export const getSignedWriteableUrlStart = () =>  {
-    console.log("getSignedWriteableUrlStart action");
-    return {
-        type: types.GET_SIGNED_WRITABLE_URL
-    }
-}
-
-export const getSignedWriteableUrlSuccess = () =>  {
-    return {
-        type: types.GET_SIGNED_WRITABLE_URL_SUCCESS
-    }
-}
-
-export const getSignedWriteableUrlFailure = () =>  {
-    return {
-        type: types.GET_SIGNED_WRITABLE_URL_FAILURE
-    }
-}
-
-export const getSignedWriteableUrl = () => (dispatch) =>  {
-    console.log("getSignedWriteableUrl action called");
-    dispatch(getSignedWriteableUrlStart())
-    let query = `query {
-        getSignedWritableUrl {
-            url
-        }
-    }`;
-    return client.graphql.query(query);
-}
-
 export const getUserStart = () => {
     return {
         type: types.GET_USER

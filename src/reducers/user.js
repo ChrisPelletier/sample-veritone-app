@@ -18,7 +18,7 @@ const user = (state = initialState, action) => {
                 ...state,
                 gettingUser: false,
                 name: action.name,
-                id: action.name,
+                id: action.id,
                 firstName: action.firstName,
                 lastName: action.lastName,
                 accountProfile: action.accountProfile
