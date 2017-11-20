@@ -29,10 +29,6 @@ const UserEmail = styled.div`
 `;
 
 class UserInfo extends Component {
-    constructor() {
-        super();
-    }
-
     render() {
         const { firstName, lastName, id, name } = this.props.user;
         return (
